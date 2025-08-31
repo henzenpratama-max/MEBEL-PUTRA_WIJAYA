@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Love Game - Royan to Lil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(#ffe6f0, #fff0f5);
+      font-family: 'Pacifico', cursive;
+      color: #d63384;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      margin-top: 40px;
+      font-size: 2.8em;
+    }
+    .question {
+      margin-top: 60px;
+      font-size: 1.5em;
+      animation: fadeIn 1s ease;
+    }
+    .options {
+      margin: 30px auto;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 12px;
+      background-color: #ff69b4;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      background-color: #ff85c1;
+    }
+    .hidden {
+      display: none;
+    }
+    .result {
+      margin-top: 50px;
+      font-size: 1.6em;
+      animation: pop 1s ease;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    #confetti {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hey Lil 💕</h1>
+  <div class="question" id="q1">
+    Ini emang ga semenarik yg kamu bayangin,
+    <br>tapi ini bukti kecil dari Royan, kalau aku bener effort banget ke kamu 😅💕
+    <br><br>
+    Kamu penasaran nggak sama kejutan di akhir? 😳
+  </div>
+  <div class="options" id="opts1">
+    <button class="btn" onclick="nextStep()">Iya dong 😍</button>
+    <button class="btn" onclick="nextStep()">Mau banget!! 🥰</button>
+  </div>
+
+  <div class="hidden" id="final">
+    <div class="result">
+      🎉 Makasih ya Lil udah mainin ini 🎉<br>
+      Aku bener-bener suka kamu... dan pengen kenal kamu lebih dekat 💖<br>
+      Dari: Royan yang deg-degan ngetik ini 🙈<br><br>
+      <button class="btn" onclick="location.href='https://wa.me/6281234567890'">Balas Pesan Royan 💌</button>
+    </div>
+  </div>
+
+  <canvas id="confetti"></canvas>
+  <audio id="bgm" src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" autoplay loop></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
+  <script>
+    function nextStep() {
+      document.getElementById("q1").classList.add("hidden");
+      document.getElementById("opts1").classList.add("hidden");
+      document.getElementById("final").classList.remove("hidden");
+      launchConfetti();
+      document.getElementById("bgm").play();
+    }
+
+    function launchConfetti() {
+      const confettiSettings = { target: 'confetti' };
+      const confetti = new ConfettiGenerator(confettiSettings);
+      confetti.render();
+    }
+  </script>
+</body>
+</html>
